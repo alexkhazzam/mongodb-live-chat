@@ -6,10 +6,13 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Root Files 
+# Files
 
 util/chat/
-dotenv.config.env
+
+# Environment variables 
+
+.dotenv.config.env
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
