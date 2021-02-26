@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/chat/tweet.css" />
+<script src="/js/chat/tweet.js" defer></script>
+<header>
+        <div id="header">
+            <img src="/images/chat/defaultProfilePicture.jpg" alt="Profile Picture" id="profile-picture">
+            <form action="/tweet" method="POST" onsubmit="showLoadingSpinner()">
+                <textarea class="form-control" rows="3" id="tweet" placeholder="What's Happening?" required name="tweet" required></textarea>
+                <button class="btn btn-info" id="send-tweet" type="submit" required>Tweet</button>
+                <div class="spinner-border text-primary" id="loading-spinner" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <% if (serverError) { %>
+                    <div id="error-message">Oops! Your tweet was unable to be posted. Try again soon.</div>
+                <% } %>
+            </form>
+    </div>
+    <div>
+        <% if (tweets) { %>
+            <% for (let i = 0; i < tweets.length; i++) { %>
+               <div class="single-tweet-wrapper">
+                    <span class="created-date"><%= `${tweets[i].createdAt.toString().split("(")[0].split("GMT")[0]}` %></span>
+                    <br>
+                    <span class="email"><%= tweets[i].email %></span>
+                    <br>
+                    <span class="name"><%= tweets[i].fullName %> tweeted:</span>
+                    <% for (let k = 0; k < curseWords.length; k++) { %>
+                        <% if (tweets[i].content.toUpperCase().includes(curseWords[k].toUpperCase()) || curseWords[k].toUpperCase() === tweets[i].content.toUpperCase()) { %>
+                        <p class="tweet-content" id="curse-word">This message contained innapropriate language and the sender may be banned.</p>
+                        <% break; %>
+                        <% } else { %>
+                            <% if ((k + 1)=== curseWords.length) { %>
+                                <p class="tweet-content"><%= tweets[i].content %></p>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+</header>

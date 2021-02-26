@@ -1,0 +1,32 @@
+:root {
+  --blue: #1fa2f1;
+  --blueLight: #9bd1f9;
+  --buttonHoverBg: #d4deff;
+}
+
+#main-nav {
+  text-align: center;
+  padding: 0px;
+}
+
+.main-nav__item {
+  list-style: none;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.main-nav__item a {
+  font-size: 30px;
+  padding: 10px;
+  color: white;
+}
+
+.main-nav__item:first-of-type a {
+  color: var(--blue);
+}
+
+.main-nav__item a:hover {
+  color: var(--blue);
+  background-color: var(--buttonHoverBg);
+  border-radius: 50%;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/login-register.css" />
+    <script src="/js/registerValidation.js" defer></script>
+    <%- include("./includes/bootstrap.ejs") %>
+    <%- include("./includes/font-awesome.ejs") %>
+</head>
+  <body>
+      <form id="register-form" onsubmit="showLoadingSpinner(); event.preventDefault()" action="/register" method="POST">
+        <div id="logo-wrapper">
+          <span>Chat live today!</span>
+          <a href="https://nhsforeignaffairs.herokuapp.com" target="_blank">
+            <img src="/images/registerPage/logo.png" width="75" height="75">
+          </a>
+        </div>
+          <div class="form-group">
+            <input type="email" class="form-control field" name="email" placeholder="Email" id="email" required>
+            <small class="error-message" id="email-error">Must have a GNPS email address.</small>
+            <% if (emailInUse) { %>
+              <small class="error-message">Email in use.</small>
+            <% } %>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control field" name="firstName" id="firstName" placeholder="First Name" required>
+            <small class="error-message" id="firstName-error">Enter your real first name.</small>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control field"name="lastName" id="lastName" placeholder="Last Name" required>
+            <small class="error-message" id="lastName-error">Enter your real last name.</small>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control field" name="password" id="password" placeholder="Password" required>
+            <small class="error-message" id="password-error"></small>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control field" name="passwordConf" id="passwordConf" placeholder="Confirm Password" required>
+            <small class="error-message" id="password-error"></small>
+          </div>
+          <% if (accountCreated) { %>
+            <div class="alert alert-success" id="account-created" role="alert">
+              Your account was successfully created! Click <a href="/login">Here</a> to login.
+            </div>
+          <% } else { %>
+            <div class="register-btn-wrapper">
+              <button class="btn btn-primary" id="register-btn" type="submit">Create Account</button>
+              <div class="spinner-border text-primary" id="loading-spinner" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <p id="link-to-login">Already have an account? Click <a href="/login">Here</a> to login.</p>
+            <% } %>
+      </form>
+  </body>
+</html>

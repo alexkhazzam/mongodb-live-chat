@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page %></title>
+    <link rel="stylesheet" href="/css/chat/chat.css" />
+    <%- include("./includes/bootstrap.ejs") %>
+    <%- include("./includes/font-awesome.ejs") %>
+</head>
+<body>
+    <p id="created-by">&copy; copyright Alexander Khazzam</p>
+    <a id="privacy-policy" href="/privacy-policy">Privacy Policy</a>
+    <div id="chat">
+        <div id="navbar-wrapper">
+            <%- include("./includes/chat/navbar.ejs") %>
+        </div>
+        <div id="active-page-wrapper">
+            <div id="active-page">
+                <h3 id="page-name">
+                    <%= page %>
+                </h3>
+            </div>
+            <div id="active-page-content">
+                <% if (page === "Profile"){ %>
+                    <%- include("./layouts/chat/profile.ejs") %>
+                <% } else if (page === "Tweet") { %>
+                    <%- include("./layouts/chat/tweet.ejs") %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
