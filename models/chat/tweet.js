@@ -17,19 +17,6 @@ module.exports.HandleTweet = class {
     );
   }
 
-  sortTweets(t) {
-    for (let i = 0; i < t.length; i++) {
-      t.age = i;
-      for (let k = t.length - 1; k > i; k--) {
-        if (t[k].age > t[i].age) {
-          const cp = t[i];
-          t[i] = t[k];
-          t[k] = cp;
-        }
-      }
-    }
-  }
-
   static async fetchTweets() {
     const sortTweets = (t) => {
       let currentAge = 0;
