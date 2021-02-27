@@ -2,9 +2,9 @@
 <script src="/js/chat/tweet.js" defer></script>
 <header>
         <div id="header">
-            <img src="/images/chat/defaultProfilePicture.jpg" alt="Profile Picture" id="profile-picture">
+            <img src="/images/chat/tweet/defaultProfile.jpg" alt="Profile Picture" id="profile-picture">
             <form action="/tweet" method="POST" onsubmit="showLoadingSpinner()">
-                <textarea class="form-control" rows="3" id="tweet" placeholder="What's Happening?" required name="tweet" required></textarea>
+                <textarea class="form-control" rows="3" id="tweet" placeholder="What's Happening?" required name="tweet" required spellcheck="true"></textarea>
                 <button class="btn btn-info" id="send-tweet" type="submit" required>Tweet</button>
                 <div class="spinner-border text-primary" id="loading-spinner" role="status">
                     <span class="sr-only">Loading...</span>
@@ -15,24 +15,47 @@
             </form>
     </div>
     <div id="tweets">
+        <h6 id="total-tweets">Total tweets: <b><%= tweets.length %></b></h6>
         <% if (tweets) { %>
                 <% for (let i = 0; i < tweets.length; i++) { %>
-                   <div class="single-tweet-wrapper">
-                        <span class="created-date"><%= `${tweets[i].createdAt.toString().split("(")[0].split("GMT")[0]}` %></span>
-                        <br>
-                        <span class="email"><%= tweets[i].email %></span>
-                        <br>
-                        <span class="name"><%= tweets[i].fullName %> tweeted:</span>
-                        <% for (let k = 0; k < curseWords.length; k++) { %>
-                            <% if (tweets[i].content.toUpperCase().includes(curseWords[k].toUpperCase()) || curseWords[k].toUpperCase() === tweets[i].content.toUpperCase()) { %>
-                            <p class="tweet-content" id="curse-word">This message contained innapropriate language and the sender may be banned.</p>
-                            <% break; %>
-                            <% } else { %>
-                                <% if ((k + 1)=== curseWords.length) { %>
-                                    <p class="tweet-content"><%= tweets[i].content %></p>
-                                <% } %>
-                            <% } %>
-                        <% } %>
+                    <div class="single-tweet-wrapper">
+                       <div class="tweet-profile-wrapper">
+                           <img src="/images/chat/tweet/defaultProfile.jpg" class="other-profiles"/>
+                       </div>
+                           <span class="created-date"><%= `${tweets[i].createdAt.toString().split("(")[0].split("GMT")[0]}` %></span>
+                           <br>
+                           <span class="email"><%= tweets[i].email %></span>
+                           <br>
+                           <span class="name"><%= `${tweets[i].fullName.charAt(0).toUpperCase() + tweets[i].fullName.slice(1).split(" ")[0] + " " + (tweets[i].fullName.split(" ")[1].charAt(0).toUpperCase()) + tweets[i].fullName.split(" ")[1].slice(1)}` %> tweeted:</span>
+                           <% for (let k = 0; k < curseWords.length; k++) { %>
+                               <% if (tweets[i].content.toUpperCase().includes(curseWords[k].toUpperCase()) || curseWords[k].toUpperCase() === tweets[i].content.toUpperCase()) { %>
+                               <p class="tweet-content" id="curse-word">This message contained innapropriate language and the sender may be banned.</p>
+                               <% break; %>
+                               <% } else { %>
+                                   <% if ((k + 1)=== curseWords.length) { %>
+                                       <p class="tweet-content"><%= tweets[i].content %></p>
+                                   <% } %>
+                               <% } %>
+                           <% } %>
+                           <footer>
+                               <ul class="tweet-footer">
+                                   <li class="tweet-btn-wrapper">
+                                     <button>
+                                       <i class="far fa-comment"></i>
+                                     </button>
+                                   </li>
+                                   <li class="tweet-btn-wrapper">
+                                       <button>
+                                       <i class="fas fa-retweet"></i>
+                                       </button>
+                                   </li>
+                                   <li class="tweet-btn-wrapper">
+                                       <button>
+                                           <i class="far fa-heart"></i>
+                                       </button>
+                                   </li>
+                               </ul>
+                           </footer>
                     </div>
                 <% } %>
         <% } %>

@@ -19,6 +19,10 @@ class Database {
   }
 
   connect() {
+    console.log(this.MONGO_DB_CLUSTER);
+    console.log(this.MONGO_DB_DB);
+    console.log(this.MONGO_DB_PASS);
+
     mongoose
       .connect(
         `mongodb+srv://admin:${this.MONGO_DB_PASS}@${this.MONGO_DB_CLUSTER}.iixgc.mongodb.net/${this.MONGO_DB_DB}?retryWrites=true&w=majority`

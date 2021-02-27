@@ -1,5 +1,6 @@
 const registerModel = require('../models/register');
 const registerEmail = require('../email/register');
+const confirmationEmail = require('../email/confirmation');
 
 module.exports.getRegisterPage = (req, res, next) => {
   if (req.session && req.session.user) {
@@ -24,7 +25,8 @@ module.exports.postRegisterPage = (req, res, next) => {
         throw err;
       });
 
-      console.log(accountCreated, registerEmail);
+      console.log(accountCreated);
+      confirmationEmail(user.email).catch(`${console.error}`.red);
       registerEmail(user.email).catch(`${console.error}`.red);
       return res.status(302).redirect('/register/?accountCreated=yes');
     } else {

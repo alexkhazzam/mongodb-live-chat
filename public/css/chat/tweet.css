@@ -9,7 +9,8 @@
   margin: auto;
 }
 
-#profile-picture {
+#profile-picture,
+.other-profiles {
   border-radius: 50%;
   margin: 10px;
   height: 85px;
@@ -48,6 +49,18 @@
   right: 5px;
 }
 
+#total-tweets {
+  color: white;
+  border-bottom: 1px solid white;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.tweet-profile-wrapper {
+  float: left;
+}
+
 .single-tweet-wrapper {
   padding: 10px;
   word-wrap: break-word;
@@ -66,4 +79,27 @@
 .tweet-content {
   margin-top: 10px;
   color: white;
+}
+
+.tweet-footer {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.tweet-btn-wrapper {
+  display: inline-block;
+  margin: 0px 6% 0px 6%;
+}
+
+.tweet-btn-wrapper button {
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
+}
+
+.tweet-btn-wrapper button i {
+  outline: none !important;
+  color: white !important;
+  background: transparent !important;
 }
