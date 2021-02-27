@@ -6,20 +6,55 @@ module.exports.HandleTweet = class {
       content: tweet,
       email: sessionObj.email,
       fullName: `${sessionObj.firstName} ${sessionObj.lastName}`,
+      age: undefined,
     };
 
-    tweetObj = await TweetSchema.create(tweetObj).catch((err) => {
-      console.log(`${err}`);
-      return res.status(302).redirect('/tweet/?error=yes');
-    });
-    tweetResult(tweetObj);
+    tweetResult(
+      await TweetSchema.create(tweetObj).catch((err) => {
+        console.log(`${err}`);
+        return res.status(302).redirect('/tweet/?error=yes');
+      })
+    );
+  }
+
+  sortTweets(t) {
+    for (let i = 0; i < t.length; i++) {
+      t.age = i;
+      for (let k = t.length - 1; k > i; k--) {
+        if (t[k].age > t[i].age) {
+          const cp = t[i];
+          t[i] = t[k];
+          t[k] = cp;
+        }
+      }
+    }
   }
 
   static async fetchTweets() {
-    const tweetArray = await TweetSchema.find().catch((err) => {
-      console.log(`${err}`.red);
-      res.redirect('/tweet/?error=yes');
-    });
-    return tweetArray;
+    const sortTweets = (t) => {
+      let currentAge = 0;
+      t.forEach((tweet) => {
+        tweet.age = currentAge;
+        currentAge++;
+      });
+
+      for (let i = 0; i < t.length; i++) {
+        for (let k = t.length - 1; k > i; k--) {
+          if (t[k].age > t[i].age) {
+            const cp = t[i];
+            t[i] = t[k];
+            t[k] = cp;
+          }
+        }
+      }
+      return t || [];
+    };
+
+    return sortTweets(
+      await TweetSchema.find().catch((err) => {
+        console.log(`${err}`.red);
+        res.redirect('/tweet/?error=yes');
+      })
+    );
   }
 };

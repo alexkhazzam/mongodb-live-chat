@@ -14,6 +14,9 @@ const Post = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    age: {
+      type: Number,
+    },
     pinned: Boolean,
   },
   { timestamps: true }

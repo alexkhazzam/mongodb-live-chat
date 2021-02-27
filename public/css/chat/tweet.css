@@ -43,6 +43,11 @@
   color: red !important;
 }
 
+#scroll-up {
+  position: absolute;
+  right: 5px;
+}
+
 .single-tweet-wrapper {
   padding: 10px;
   word-wrap: break-word;

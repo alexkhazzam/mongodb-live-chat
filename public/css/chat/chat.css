@@ -66,9 +66,21 @@ body {
   border-bottom: none;
   border-top: none;
   position: absolute;
-  max-height: 120%;
   width: calc(100% - 55px);
+  height: 110%;
   left: 55px;
   top: 0px;
   overflow: scroll;
+}
+
+@media (max-width: 2000px) and (orientation: portrait) {
+  #active-page-wrapper {
+    height: 250%;
+  }
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  #active-page-wrapper {
+    height: 160%;
+  }
 }
