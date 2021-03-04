@@ -6,7 +6,7 @@ const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });
 
-module.exports = email = async (userEmail) => {
+module.exports = email = async (userEmail, res) => {
   let transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: 587,
@@ -17,11 +17,12 @@ module.exports = email = async (userEmail) => {
     },
   });
 
-  let info = await transporter.sendMail({
-    from: process.env.NODEMAILER_USER,
-    to: userEmail,
-    subject: 'Email Confirmation!',
-    html: `
+  let info = await transporter
+    .sendMail({
+      from: process.env.NODEMAILER_USER,
+      to: userEmail,
+      subject: 'Email Confirmation!',
+      html: `
       <html>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -46,7 +47,11 @@ module.exports = email = async (userEmail) => {
         </div>
       </html>
       `,
-  });
+    })
+    .catch((err) => {
+      console.log(`${err}`.red);
+      res.redirect('/register');
+    });
 
   console.log(`Encrypted message: ${info.messageId}`);
 };

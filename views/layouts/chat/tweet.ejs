@@ -22,7 +22,7 @@
                        <div class="tweet-profile-wrapper">
                            <img src="/images/chat/tweet/defaultProfile.jpg" class="other-profiles"/>
                        </div>
-                           <span class="created-date"><%= `${tweets[i].createdAt.toString().split("(")[0].split("GMT")[0]}` %></span>
+                           <span class="created-date"><%= createDate(new Date(), new Date(tweets[i].createdAt)) %></span>
                            <br>
                            <span class="email"><%= tweets[i].email %></span>
                            <br>

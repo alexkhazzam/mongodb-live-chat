@@ -73,6 +73,12 @@ body {
   overflow: scroll;
 }
 
+@media (max-width: 10000px) {
+  #active-page-wrapper {
+    height: 250%;
+  }
+}
+
 @media (max-width: 2000px) and (orientation: portrait) {
   #active-page-wrapper {
     height: 250%;

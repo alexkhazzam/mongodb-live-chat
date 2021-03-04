@@ -27,10 +27,7 @@ module.exports.postLoginPage = (req, res, next) => {
       const passwordsMatch = await loginModel.AuthenticateUser.comparePasswords(
         user,
         password
-      ).catch((err) => {
-        console.log(`${err}`.red);
-        throw err;
-      });
+      );
       if (passwordsMatch) {
         req.session.user = user;
         return res.status(302).redirect('/home');

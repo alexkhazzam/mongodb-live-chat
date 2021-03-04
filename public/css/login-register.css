@@ -71,7 +71,8 @@ body {
   width: 80%;
 }
 
-#loading-spinner {
+#loading-spinner,
+#creating-account-spinner {
   position: absolute;
   margin-left: 5px;
   display: none;
@@ -80,14 +81,20 @@ body {
 #email-error,
 #firstName-error,
 #lastName-error,
-#password-error {
+#password-error,
+#digit-error {
   display: none;
 }
 
-#account-created {
+#account-created,
+#code-sent {
   margin: auto;
   font-size: 0.8rem;
   width: 80%;
+}
+
+#code-sent {
+  margin-bottom: 5px;
 }
 
 #account-created a,

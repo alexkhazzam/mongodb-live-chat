@@ -11,26 +11,22 @@ module.exports.getRegisterPage = (req, res, next) => {
 
   res.render('register', {
     emailInUse: req.query.emailInUse === 'yes' ? true : false,
-    accountCreated: req.query.accountCreated === 'yes' ? true : false,
   });
 };
 
-module.exports.postRegisterPage = (req, res, next) => {
-  registerModel.CreateAccount.EmailInUse(req.body, async (user) => {
-    if (user) {
-      const accountCreated = await registerModel.CreateAccount.createNewUser(
-        user
-      ).catch((err) => {
-        console.log(`${err}`.red);
-        throw err;
-      });
-
-      console.log(accountCreated);
-      confirmationEmail(user.email).catch(`${console.error}`.red);
-      registerEmail(user.email).catch(`${console.error}`.red);
-      return res.status(302).redirect('/register/?accountCreated=yes');
+module.exports.postRegisterPage = async (req, res, next) => {
+  const email = req.body.email.trim();
+  if (req.body.firstName && req.body.lastName && req.body.email) {
+    const emailInUse = await registerModel.CreateAccount.emailInUse(email);
+    if (!emailInUse) {
+      // TODO create account
+      return res.redirect('/register');
     } else {
-      res.status(302).redirect('/register/?emailInUse=yes');
+      // TODO email taken
+      return res.redirect('/register');
     }
-  });
+  } else if (req.body.id && req.body.email && req.body.password) {
+    confirmationEmail.email(email, res);
+    return res.redirect('/register');
+  }
 };

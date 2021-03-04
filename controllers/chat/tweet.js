@@ -1,5 +1,6 @@
 const tweetModel = require('../../models/chat/tweet');
 const curseWords = require('../../util/chat/curseWords');
+const createDate = require('../../util/chat/createDate');
 
 let tweetObj = {};
 
@@ -9,6 +10,7 @@ module.exports.getTweetPage = async (req, res, next) => {
     serverError: req.query.error === 'yes' ? true : false,
     tweet: req.query.tweeted === 'yes' ? tweetObj : false,
     curseWords: curseWords.curseWords,
+    createDate: createDate.timeDifference,
     page: 'Tweet',
   });
 };

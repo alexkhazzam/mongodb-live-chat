@@ -11,13 +11,18 @@
     <%- include("./includes/font-awesome.ejs") %>
 </head>
   <body>
+    <% if (5) { %>
       <form id="register-form" onsubmit="showLoadingSpinner(); event.preventDefault()" action="/register" method="POST">
+    <% } else { %>
+      <form id="register-form" onsubmit="showCreatingAccountSpinner()" action="/register" method="POST">
+    <% } %>
         <div id="logo-wrapper">
           <span>Chat live today!</span>
           <a href="https://nhsforeignaffairs.herokuapp.com" target="_blank">
             <img src="/images/registerPage/logo.png" width="75" height="75">
           </a>
         </div>
+        <% if (5) { %>
           <div class="form-group">
             <input type="email" class="form-control field" name="email" placeholder="Email" id="email" required>
             <small class="error-message" id="email-error">Must have a GNPS email address.</small>
@@ -41,10 +46,27 @@
             <input type="password" class="form-control field" name="passwordConf" id="passwordConf" placeholder="Confirm Password" required>
             <small class="error-message" id="password-error"></small>
           </div>
-          <% if (accountCreated) { %>
-            <div class="alert alert-success" id="account-created" role="alert">
-              Your account was successfully created! Click <a href="/login">Here</a> to login.
-            </div>
+        <% } %>
+          <% if (5) { %>
+            <% if (5) { %>
+              <div class="alert alert-success" id="code-sent" role="alert">
+                A 6-digit code has been sent to your email; paste it below to verify your information.
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control field" placeholder="123456" required>
+              </div>
+              <small class="error-message" id="digit-error">Incorrect code.</small>
+              <div class="register-btn-wrapper">
+                <button class="btn btn-primary" id="register-btn" type="submit">Finish Creating Account</button>
+                <div class="spinner-border text-primary" id="creating-account-spinner" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            <% } else { %>
+              <div class="alert alert-success" id="account-created" role="alert">
+                Your account was successfully created! Click <a href="/login">Here</a> to login.
+              </div>
+              <% } %>
           <% } else { %>
             <div class="register-btn-wrapper">
               <button class="btn btn-primary" id="register-btn" type="submit">Create Account</button>
