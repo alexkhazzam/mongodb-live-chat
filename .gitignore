@@ -8,7 +8,7 @@ lerna-debug.log*
 
 # Files
 
-util/chat/
+util/chat/curseWords.js
 
 # Environment variables 
 
