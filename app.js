@@ -3,12 +3,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const database = require('./database/mongodb');
 const session = require('express-session');
+const dotenv = require('dotenv');
 
 const app = Express();
 
+dotenv.config({ path: 'dotenv.config.env' });
+console.log(process.env.CLIENT_SECRET);
+
 app.use(
   session({
-    secret: 'client',
+    secret: process.env.CLIENT_SECRET,
     resave: true,
     saveUninitialized: false,
   })

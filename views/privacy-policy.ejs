@@ -5,8 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
+    <%- include("./includes/bootstrap.ejs") %>
+    <%- include("./includes/font-awesome.ejs") %>
+    <link rel="stylesheet" href="/css/privacy-policy.css" />
 </head>
     <body>
-        
+        <div id="privacy-policy">
+            <ul>
+                <h3>About The Chat</h3>
+                <hr>
+                <li id="about-li">
+                    Welcome to the Foreign Affairs Club live chat! This chat is not just for members of the FAC, but for all students at Great Neck North High. There are two components to this chat; one is a chat area where everyone can message each other, and another is a chat area dedicated to tweets. In the tweet chat, for instance, one could simply tweet "OMG I HATE BIOLOGY," and vent their feelings. People could respond to tweets as well. Anyways, you'll see what the chat looks like soon...
+                </li>
+                <h3>Security</h3>
+                <hr>
+                <li id="security-li" >
+                    This chat is 100% secure, and the chances of someone hacking your account and impersonating you, or an anonymous person monitoring the chats, is zero. There is also no chance of someone stealing your password, because the moment you sign up, your password is hashed in the most secure way and stored in a database (which is also protected). Stealing a password before it is encrypted is still virtually impossible, as this website is protected with HTTPS, rendering MITM or cookie-stealing attacks useless.  In other words, the only person who will ever know your password, is YOU and YOU alone. <br>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;   The reason why this chat does not have private messaging is because private messages would end up being stored in a database; because messages would not be encrypted like users' passwords, the creator of this account would have access to them. Of course, the creator, being an awesome guy, would never look at private chats, but his word is simply not enough to convince people. Therefore, private chats will not be an option! 
+                </li>
+            </ul>
+        </div>
     </body>
 </html>

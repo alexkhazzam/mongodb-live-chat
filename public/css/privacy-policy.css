@@ -8,3 +8,31 @@
 html {
   height: 100%;
 }
+
+body {
+  background-color: #30353b !important;
+}
+
+h3:first-of-type {
+  margin-top: 3rem;
+}
+
+h3 {
+  color: white;
+  margin-left: 10%;
+}
+
+hr {
+  background-color: white !important;
+  margin-bottom: 2rem;
+  width: 80%;
+}
+
+#about-li,
+#security-li {
+  color: white;
+  list-style: none;
+  margin-bottom: 2rem;
+  padding: 0px 10%;
+  letter-spacing: 1px;
+}
