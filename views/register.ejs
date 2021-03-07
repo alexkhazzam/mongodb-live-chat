@@ -7,6 +7,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="/css/login-register.css" />
     <script src="/js/registerValidation.js" defer></script>
+    <script src="/js/browserStorage/emailHandler.js" defer></script>
     <%- include("./includes/bootstrap.ejs") %>
     <%- include("./includes/font-awesome.ejs") %>
 </head>
@@ -88,7 +89,7 @@
                   </div>
                 <% } else { %>
                   <div class="register-btn-wrapper">
-                    <button class="btn btn-primary" id="register-btn" type="submit">Finish Creating Account</button>
+                    <button class="btn btn-primary create-account" id="register-btn" type="submit">Finish Creating Account</button>
                     <div class="spinner-border text-primary" id="creating-account-spinner" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>

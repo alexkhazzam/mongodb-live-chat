@@ -8,7 +8,6 @@ const dotenv = require('dotenv');
 const app = Express();
 
 dotenv.config({ path: 'dotenv.config.env' });
-console.log(process.env.CLIENT_SECRET);
 
 app.use(
   session({
