@@ -53,6 +53,7 @@ body {
 }
 
 #register-btn,
+#register-btn-email-auth,
 #login-btn {
   font-size: 0.8rem !important;
   cursor: pointer;
@@ -72,7 +73,7 @@ body {
 }
 
 #loading-spinner,
-#creating-account-spinner {
+#show-creating-account-spinner {
   position: absolute;
   margin-left: 5px;
   display: none;
@@ -82,7 +83,7 @@ body {
 #firstName-error,
 #lastName-error,
 #password-error,
-#digit-error {
+#creating-account-spinner {
   display: none;
 }
 
@@ -93,8 +94,15 @@ body {
   width: 80%;
 }
 
+#id-error {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
 #code-sent {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: -5px;
 }
 
 #account-created a,

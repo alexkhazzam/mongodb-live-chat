@@ -50,7 +50,7 @@ module.exports = email = async (userEmail, res) => {
     })
     .catch((err) => {
       console.log(`${err}`.red);
-      res.redirect('/register');
+      res.redirect('/register/?error=yes');
     });
 
   console.log(`Encrypted message: ${info.messageId}`);

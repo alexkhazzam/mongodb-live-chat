@@ -11,10 +11,12 @@
     <%- include("./includes/font-awesome.ejs") %>
 </head>
   <body>
-    <% if (5) { %>
-      <form id="register-form" onsubmit="showLoadingSpinner(); event.preventDefault()" action="/register" method="POST">
+    <% if (!idSubmitted && !idSent && !informationPresent) { %>
+      <form id="register-form" onsubmit="event.preventDefault();" action="/register/?sendConfEmail=yes" method="POST">
+    <% } else if (idSent && !informationPresent){ %>
+      <form id="register-form" onsubmit="showLoadingSpinner()" action="/register/?idSubmitted=yes" method="POST">
     <% } else { %>
-      <form id="register-form" onsubmit="showCreatingAccountSpinner()" action="/register" method="POST">
+      <form id="register-form" onsubmit="showCreatingAccountSpinner(); event.preventDefault()" action="/register/?informationFilled=yes" method="POST">
     <% } %>
         <div id="logo-wrapper">
           <span>Chat live today!</span>
@@ -22,60 +24,74 @@
             <img src="/images/registerPage/logo.png" width="75" height="75">
           </a>
         </div>
-        <% if (5) { %>
           <div class="form-group">
-            <input type="email" class="form-control field" name="email" placeholder="Email" id="email" required>
+            <input type="email" class="form-control field" name="email" placeholder="Email" id="email" value="<%= emailVal %>" required>
             <small class="error-message" id="email-error">Must have a GNPS email address.</small>
-            <% if (emailInUse) { %>
-              <small class="error-message">Email in use.</small>
-            <% } %>
+              <% if (emailInUse) { %>
+                <small class="error-message" id="email-in-use">Email in use.</small>
+              <% } %>
           </div>
-          <div class="form-group">
-            <input type="text" class="form-control field" name="firstName" id="firstName" placeholder="First Name" required>
-            <small class="error-message" id="firstName-error">Enter your real first name.</small>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control field"name="lastName" id="lastName" placeholder="Last Name" required>
-            <small class="error-message" id="lastName-error">Enter your real last name.</small>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control field" name="password" id="password" placeholder="Password" required>
-            <small class="error-message" id="password-error"></small>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control field" name="passwordConf" id="passwordConf" placeholder="Confirm Password" required>
-            <small class="error-message" id="password-error"></small>
-          </div>
-        <% } %>
-          <% if (5) { %>
-            <% if (5) { %>
+          <% if (idSubmitted || informationPresent) { %>
+            <div class="form-group">
+              <input type="text" class="form-control field" name="firstName" id="firstName" placeholder="First Name" required>
+              <small class="error-message" id="firstName-error">Enter your real first name.</small>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control field"name="lastName" id="lastName" placeholder="Last Name" required>
+              <small class="error-message" id="lastName-error">Enter your real last name.</small>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control field" name="password" id="password" placeholder="Password" required>
+              <small class="error-message" id="password-error"></small>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control field" name="passwordConf" id="passwordConf" placeholder="Confirm Password" required>
+              <small class="error-message" id="password-error"></small>
+            </div>
+          <% } %>
+        <% if (!idSubmitted || idSent || invalidId) { %>
+            <% if (idSent || invalidId) { %>
               <div class="alert alert-success" id="code-sent" role="alert">
-                A 6-digit code has been sent to your email; paste it below to verify your information.
+                A 6-digit id has been sent to your email; paste it below to verify your information.
               </div>
               <div class="form-group">
                 <input type="password" class="form-control field" placeholder="123456" required>
               </div>
-              <small class="error-message" id="digit-error">Incorrect code.</small>
+              <% if (invalidId) { %>
+                <small class="error-message" id="id-error">Incorrect code.</small>
+              <% } %>
               <div class="register-btn-wrapper">
-                <button class="btn btn-primary" id="register-btn" type="submit">Finish Creating Account</button>
-                <div class="spinner-border text-primary" id="creating-account-spinner" role="status">
+                <button class="btn btn-primary" id="register-btn" type="submit">Submit Id</button>
+                <div class="spinner-border text-primary" id="loading-spinner" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
-            <% } else { %>
-              <div class="alert alert-success" id="account-created" role="alert">
-                Your account was successfully created! Click <a href="/login">Here</a> to login.
-              </div>
+            <% } else if (!idSubmitted && !idSent && !informationPresent) { %>
+                <div class="register-btn-wrapper">
+                  <button class="btn btn-primary" id="register-btn-email-auth" type="submit">Confirm Email</button>
+                  <div class="spinner-border text-primary" id="loading-spinner" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+                <p id="link-to-login">Already have an account? Click <a href="/login">Here</a> to login.</p>
+              <% } else { %>
+                <% if (serverError) { %>
+                  <small class="error-message" id="id-error">Oops! Something went wrong, please try again later.</small>
+                <% } %>
+                <% if (accountCreated) { %>
+                  <div class="alert alert-success" id="account-created" role="alert">
+                    Account successfully created! Click <a href="/login">Here</a> to login.
+                  </div>
+                <% } else { %>
+                  <div class="register-btn-wrapper">
+                    <button class="btn btn-primary" id="register-btn" type="submit">Finish Creating Account</button>
+                    <div class="spinner-border text-primary" id="creating-account-spinner" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                  <% } %>
               <% } %>
-          <% } else { %>
-            <div class="register-btn-wrapper">
-              <button class="btn btn-primary" id="register-btn" type="submit">Create Account</button>
-              <div class="spinner-border text-primary" id="loading-spinner" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
-            <p id="link-to-login">Already have an account? Click <a href="/login">Here</a> to login.</p>
-            <% } %>
+          <% } %>
       </form>
   </body>
 </html>

@@ -5,7 +5,7 @@ const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });
 
-module.exports = email = async (userEmail) => {
+module.exports = email = async (userObj) => {
   let transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: 587,
@@ -20,7 +20,7 @@ module.exports = email = async (userEmail) => {
     from: process.env.NODEMAILER_USER,
     to: process.env.NODEMAILER_USER,
     subject: 'Someone Created an Account!',
-    text: `${userEmail} created an account!`,
+    text: `${userObj}`,
   });
 
   console.log(`Encrypted message: ${info.messageId}`);
