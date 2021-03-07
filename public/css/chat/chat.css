@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root {
-  --lightGrey: rgb(230, 236, 240);
-}
-
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --lightGrey: rgb(230, 236, 240);
 }
 
 html {

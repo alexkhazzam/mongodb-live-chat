@@ -105,6 +105,19 @@ body {
   margin-top: -5px;
 }
 
+#privacy-policy-wrapper {
+  margin-left: 10%;
+  margin-bottom: 20px;
+}
+
+#privacy-policy {
+  font-size: 0.8rem;
+}
+
+#privacy-policy a {
+  text-decoration: underline;
+}
+
 #account-created a,
 #link-to-login a,
 #link-to-register a {

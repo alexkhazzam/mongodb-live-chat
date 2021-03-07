@@ -24,8 +24,10 @@ app.set('view engine', 'ejs');
 
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
+const privacyPolicy = require('./routes/privacyPolicy');
 
 app.use(loginRoute);
+app.use(privacyPolicy);
 app.use(registerRoute);
 
 // Middleware Routes

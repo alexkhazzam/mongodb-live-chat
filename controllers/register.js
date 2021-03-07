@@ -31,7 +31,6 @@ module.exports.postRegisterPage = async (req, res, next) => {
       // Query params encrypted through HTTPS => passing emails is not a security risk
     }
   } else if (req.query.idSubmitted) {
-    // const idMatches = await registerModel.CreateAccount.validateId();
     const idMatches = await registerModel.CreateAccount.doesIdMatch;
     if (idMatches) {
       req.session.tentativeSignIn = email;
@@ -53,6 +52,11 @@ module.exports.postRegisterPage = async (req, res, next) => {
     registerEmail(
       await registerModel.CreateAccount.createNewUser(userObj, res)
     );
+
+    req.session.destroy(() => {
+      console.log('session destroyed'.red);
+    });
+
     return res.redirect(`${rootUrl}informationPresent=yes&accountCreated=yes`);
   } else {
     res.redirect(`${rootUrl}informationPresent=yes&serverError=yes`);
