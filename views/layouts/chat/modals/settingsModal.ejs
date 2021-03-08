@@ -2,6 +2,33 @@
 <script src="/js/chat/modals/settings.js" defer></script>
 <div id="settings-modal">
     <div id="modal-content">
-        <h1>hi there</h1>
+            <ul class="nav nav-tabs" id="main-settings-nav">
+                <li class="nav-item">
+                  <a class="nav-link active-link" id="preferences-link">Preferences<i class="fas fa-palette"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="security-link">Security<i class="fas fa-lock"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="admin-link">Admin<i class="fas fa-user-shield"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="close-modal">Close<i class="fas fa-times-circle"></i></a>
+                </li>
+            </ul>
+            <div id="active-content">
+                <div id="preferences">
+                    PREFERENCES
+                </div>
+                <div id="security">
+                    SECURITY
+                </div>
+                <div id="admin">
+                    <form action="/admin-secret" method="POST" >
+                            <input type="text" class="form-control" id="admin-secret" placeholder="Admin secret" name="adminSecret" required>
+                            <button type="button" class="btn btn-warning" id="submit-secret" type="submit">Authenticate</button>
+                    </form>
+                </div>
+            </div>
     </div>
 </div>

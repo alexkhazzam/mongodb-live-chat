@@ -1,7 +1,7 @@
 #settings-modal {
   display: none;
   position: absolute;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.842), rgba(0, 0, 0, 0.89));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.892), rgba(0, 0, 0, 0.934));
   background-size: cover;
   background-position: center;
   height: 1583px;
@@ -14,5 +14,63 @@
 
 #modal-content {
   z-index: 2;
-  border: 2px solid red;
+  animation: 1.5s scroll-down-modal-content;
+}
+
+#main-settings-nav {
+  text-align: center !important;
+  width: fit-content;
+  margin: 10% auto 0px auto !important;
+  border-bottom: none !important;
+}
+
+#close-modal i {
+  color: maroon;
+}
+
+#active-content {
+  width: 70%;
+  margin: auto;
+  border-top: none;
+  border: 1px solid white;
+  height: 450px;
+}
+
+#admin {
+  display: none;
+}
+
+#admin-secret {
+  width: 60% !important;
+  border-radius: 0px !important;
+  border: none !important;
+  margin: 5% auto 0px auto !important;
+}
+
+#submit-secret {
+  margin-left: 20%;
+  margin-top: 10px;
+  border-radius: 0px !important;
+}
+
+.active-link {
+  border: 1px solid white !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.fas {
+  margin-left: 5px;
+}
+
+@keyframes scroll-down-modal-content {
+  from {
+    margin-top: 80%;
+  }
+
+  to {
+    margin-top: 0px;
+  }
 }
