@@ -14,7 +14,7 @@
 
 #modal-content {
   z-index: 2;
-  animation: 1.5s scroll-down-modal-content;
+  animation: 1.5s scroll-up-modal-content;
 }
 
 #main-settings-nav {
@@ -38,6 +38,7 @@
 
 #admin {
   display: none;
+  animation: 1.5s scroll-up-admin;
 }
 
 #admin-secret {
@@ -45,6 +46,24 @@
   border-radius: 0px !important;
   border: none !important;
   margin: 5% auto 0px auto !important;
+}
+
+#admin-list {
+  text-align: center;
+  width: 100%;
+  padding: 0px;
+}
+
+#admin-list-wrapper {
+  text-align: left;
+  margin-left: 20%;
+  margin-top: 70px;
+  width: fit-content;
+}
+
+.admin-list__item {
+  color: white;
+  list-style: none;
 }
 
 #submit-secret {
@@ -65,7 +84,17 @@
   margin-left: 5px;
 }
 
-@keyframes scroll-down-modal-content {
+@keyframes scroll-up-modal-content {
+  from {
+    margin-top: 80%;
+  }
+
+  to {
+    margin-top: 0px;
+  }
+}
+
+@keyframes scroll-up-admin {
   from {
     margin-top: 80%;
   }

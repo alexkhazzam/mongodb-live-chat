@@ -73,7 +73,7 @@ body {
   overflow: scroll;
 }
 
-@media (max-width: 10000px) {
+/* @media (max-width: 10000px) {
   #active-page-wrapper {
     height: 250%;
   }
@@ -89,4 +89,4 @@ body {
   #active-page-wrapper {
     height: 160%;
   }
-}
+} */

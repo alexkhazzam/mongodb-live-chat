@@ -25,9 +25,22 @@
                 </div>
                 <div id="admin">
                     <form action="/admin-secret" method="POST" >
-                            <input type="text" class="form-control" id="admin-secret" placeholder="Admin secret" name="adminSecret" required>
-                            <button type="button" class="btn btn-warning" id="submit-secret" type="submit">Authenticate</button>
+                            <input type="password" class="form-control" id="admin-secret" placeholder="Admin secret" name="adminSecret" required>
+                            <button class="btn btn-warning" id="submit-secret" type="submit">Authenticate As Admin</button>
                     </form>
+                    <ul id="admin-list">
+                        <div id="admin-list-wrapper">
+                            <li class="admin-list__item">
+                                <i class="fas fa-check"></i> Be able to delete students' chats
+                            </li>
+                            <li class="admin-list__item">
+                                <i class="fas fa-check"></i> Be able to remove students
+                            </li>
+                            <li class="admin-list__item">
+                                <i class="fas fa-check"></i> Be able to access blocked chat features
+                            </li>
+                        </div>
+                    </ul>
                 </div>
             </div>
     </div>
