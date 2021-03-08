@@ -19,23 +19,29 @@ module.exports.getLoginPage = (req, res, next) => {
   });
 };
 
-module.exports.postLoginPage = (req, res, next) => {
+module.exports.postLoginPage = async (req, res, next) => {
   const email = req.body.email.trim();
   const password = req.body.password.trim();
-  loginModel.AuthenticateUser.fetchEmail(email, async (user) => {
-    if (user) {
-      const passwordsMatch = await loginModel.AuthenticateUser.comparePasswords(
-        user,
-        password
-      );
-      if (passwordsMatch) {
-        req.session.user = user;
-        return res.status(302).redirect('/home');
-      } else {
-        return res.status(302).redirect('/login/?loginInvalid=yes');
-      }
+  const errorUrl = '/login/?loginInvalid=yes';
+
+  const redirection = (url) => {
+    return res.status(302).redirect(url);
+  };
+
+  const user = await loginModel.AuthenticateUser.fetchEmail(email);
+
+  if (user) {
+    const passwordsMatch = await loginModel.AuthenticateUser.comparePasswords(
+      user,
+      password
+    );
+    if (passwordsMatch) {
+      req.session.user = user;
+      return redirection('/home');
     } else {
-      res.status(302).redirect('/login/?loginInvalid=yes');
+      return redirection(errorUrl);
     }
-  });
+  } else {
+    redirection(errorUrl);
+  }
 };

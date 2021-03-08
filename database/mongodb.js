@@ -25,10 +25,7 @@ class Database {
 
     mongoose
       .connect(
-        `mongodb+srv://admin:${this.MONGO_DB_PASS}@
-         ${this.MONGO_DB_CLUSTER}.iixgc.mongodb.net/
-         ${this.MONGO_DB_DB}?retryWrites=true&w=majority
-        `
+        `mongodb+srv://admin:${this.MONGO_DB_PASS}@${this.MONGO_DB_CLUSTER}.iixgc.mongodb.net/${this.MONGO_DB_DB}?retryWrites=true&w=majority`
       )
       .then(() => {
         console.log('Database connection established'.green);

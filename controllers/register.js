@@ -19,24 +19,28 @@ module.exports.getRegisterPage = (req, res, next) => {
 
 module.exports.postRegisterPage = async (req, res, next) => {
   const email = req.body.email.trim();
-  const rootUrl = '/register/?';
+
+  const redirection = (url) => {
+    return res.status(302).redirect(`/register/?${url}`);
+  };
 
   if (req.query.sendConfEmail) {
     const emailInUse = await registerModel.CreateAccount.emailInUse(email);
+
     if (!emailInUse) {
       confirmationEmail(email, res);
-      return res.redirect(`${rootUrl}idSent=yes&emailVal=${email}`);
+      return redirection(`idSent=yes&emailVal=${email}`);
     } else {
-      return res.redirect(`${rootUrl}emailInUse=yes&emailVal=${email}`);
-      // Query params encrypted through HTTPS => passing emails is not a security risk...though I should probably store them in the browser just to be safe :)
+      return redirection(`emailInUse=yes&emailVal=${email}`);
     }
   } else if (req.query.idSubmitted) {
     const idMatches = await registerModel.CreateAccount.doesIdMatch;
+
     if (idMatches) {
       req.session.tentativeSignIn = email;
-      return res.redirect(`${rootUrl}informationPresent=yes&emailVal=${email}`);
+      return redirection(`informationPresent=yes&emailVal=${email}`);
     } else {
-      return res.redirect(`${rootUrl}invalidId=yes&emailVal=${email}`);
+      return redirection(`invalidId=yes&emailVal=${email}`);
     }
   } else if (
     req.session.tentativeSignIn &&
@@ -57,8 +61,8 @@ module.exports.postRegisterPage = async (req, res, next) => {
       console.log('session destroyed'.red);
     });
 
-    return res.redirect(`${rootUrl}informationPresent=yes&accountCreated=yes`);
+    return redirection(`informationPresent=yes&accountCreated=yes`);
   } else {
-    res.redirect(`${rootUrl}informationPresent=yes&serverError=yes`);
+    redirection(`informationPresent=yes&serverError=yes`);
   }
 };

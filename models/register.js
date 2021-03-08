@@ -26,12 +26,9 @@ module.exports.CreateAccount = class {
         throw err;
       });
 
-    console.log(newUser);
-
-    const result = await UserSchema.create(newUser).catch((err) => {
+    return await UserSchema.create(newUser).catch((err) => {
       console.log(`${err}`.red);
       return res.redirect('/register/?informationPresent=yes&serverError=yes');
     });
-    return result;
   }
 };
