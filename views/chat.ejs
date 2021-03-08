@@ -10,11 +10,12 @@
     <%- include("./includes/font-awesome.ejs") %>
 </head>
 <body>
-    <p id="created-by">&copy; copyright Alexander Khazzam</p>
-    <a id="privacy-policy" href="/privacy-policy">Privacy Policy</a>
+        <p id="created-by">&copy; copyright Alexander Khazzam</p>
+        <a id="privacy-policy" href="/privacy-policy" target="_blank">Privacy Policy</a>
+    <%- include("./layouts/chat/modals/settingsModal.ejs") %>
     <div id="chat">
         <div id="navbar-wrapper">
-            <%- include("./includes/chat/navbar.ejs") %>
+            <%- include("./layouts/chat/navbar.ejs") %>
         </div>
         <div id="active-page-wrapper">
             <div id="active-page">

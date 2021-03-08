@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="/css/chat/navbar.css" />
+<script src="/js/chat/navbar.js" defer></script>
 <nav>
     <ul id="main-nav">
         <li class="main-nav__item">
-            <a href="/tweet">
+            <a href="/tweet" id="first-anchor">
                 <i class="fas fa-dove"></i>
             </a>
         </li>
@@ -22,19 +23,20 @@
             </a>
         </li>
         <li class="main-nav__item">
-            <a  href="/messages" >
-                <i class="fas fa-envelope"></i>
-            </a>
-        </li>
-        <li class="main-nav__item">
             <a href="/profile" >
                 <i class="fas fa-user"></i>
             </a>
+        </li>
+        <li id="settings-li">
+            <i class="fas fa-cog"></i>
         </li>
         <li class="main-nav__item">
             <a href="/login" >
                 <i class="fas fa-sign-out-alt"></i>
             </a>
+        </li>
+        <li id="scroll-up-li">
+            <i class="fas fa-angle-double-up"></i>
         </li>
     </ul>
 </nav>

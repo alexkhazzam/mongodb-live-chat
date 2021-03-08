@@ -14,26 +14,41 @@
 #main-nav {
   text-align: center;
   padding: 0px;
+  position: relative;
 }
 
-.main-nav__item {
+.main-nav__item a:hover,
+#settings-li i:hover {
+  cursor: pointer;
+  background-color: var(--buttonHoverBg);
+  color: var(--blue);
+  border-radius: 50%;
+}
+
+.main-nav__item,
+#settings-li,
+#scroll-up-li {
   list-style: none;
   margin-top: 30px;
   text-align: center;
 }
 
-.main-nav__item a {
+.main-nav__item a,
+#settings-li i,
+#scroll-up-li i {
   font-size: 30px;
   padding: 10px;
   color: white;
 }
 
-.main-nav__item:first-of-type a {
+#scroll-up-li i {
+  margin: 0px;
+  cursor: pointer;
+  background-color: var(--buttonHoverBg);
   color: var(--blue);
+  border-radius: 50%;
 }
 
-.main-nav__item a:hover {
+#first-anchor {
   color: var(--blue);
-  background-color: var(--buttonHoverBg);
-  border-radius: 50%;
 }
