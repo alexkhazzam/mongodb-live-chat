@@ -28,7 +28,7 @@ module.exports.postRegisterPage = async (req, res, next) => {
       return res.redirect(`${rootUrl}idSent=yes&emailVal=${email}`);
     } else {
       return res.redirect(`${rootUrl}emailInUse=yes&emailVal=${email}`);
-      // Query params encrypted through HTTPS => passing emails is not a security risk
+      // Query params encrypted through HTTPS => passing emails is not a security risk...though I should probably store them in the browser just to be safe :)
     }
   } else if (req.query.idSubmitted) {
     const idMatches = await registerModel.CreateAccount.doesIdMatch;
