@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
-const root = require('../util/root');
+const root = require('../../../../util/root');
 const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });
 
-module.exports = email = async (userObj) => {
+module.exports = email = async (userObj, question) => {
   let transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: process.env.NODEMAILER_PORT,
@@ -17,10 +17,10 @@ module.exports = email = async (userObj) => {
   });
 
   let info = await transporter.sendMail({
-    from: process.env.NODEMAILER_USER,
+    from: userObj.email,
     to: process.env.NODEMAILER_USER,
-    subject: 'Someone Created an Account!',
-    text: `${userObj}`,
+    subject: 'Someone asked a credential question!',
+    text: `${question}`,
   });
 
   console.log(`Encrypted message: ${info.messageId}`);

@@ -9,6 +9,11 @@ const app = Express();
 
 dotenv.config({ path: 'dotenv.config.env' });
 
+app.use('/', (req, res, next) => {
+  console.log(`HTTP ${req.httpVersion} ${req.method} ${req.originalUrl}`.green);
+  next();
+});
+
 app.use(
   session({
     secret: process.env.CLIENT_SECRET,
@@ -49,8 +54,12 @@ app.use(tweetAPIRoute);
 
 // API Routes
 
-const securityRoute = require('./routes/api/chat/security');
+// Security
+
+const securityRoute = require('./routes/api/chat/security/userCredentials');
+const credentialQuestion = require('./routes/api/chat/security/credentialQuestion');
 
 app.use(securityRoute);
+app.use(credentialQuestion);
 
 module.exports = app;

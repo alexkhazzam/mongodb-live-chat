@@ -23,16 +23,38 @@
                   
                 </div>
                 <div id="security">
+                        <input type="password" class="form-control" id="security-suggestion" placeholder="Have any questions regarding your credentials?" name="adminSecret" required>
+                        <button class="btn btn-warning" id="submit-security-question">Submit Question</button>
+                        <div class="spinner-border text-primary" id="loading-spinner" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     <ul id="security-items">
-                        <li class="security-item">
-                            <span>First Name: </span><span id="security-item__first-name"></span>
-                        </li>
-                        <li class="security-item">
-                            <span>Last Name: </span><span id="security-item__last-name"></span>
-                        </li>
-                        <li class="security-item">
-                            <span>Email: </span><span id="security-item__email"></span>
-                        </li>
+                        <div id="security-items-wrapper">
+                            <span id="personal-information">
+                                <li class="security-item">
+                                    <img src="/images/chat/user/defaultProfile.jpg" id="profile-picture" alt="Profile Picture"/>
+                                </li>
+                                <li class="security-item">
+                                    First Name:&nbsp;<span id="security-item__first-name"></span>
+                                </li>
+                                <li class="security-item">
+                                    Last Name:&nbsp;<span id="security-item__last-name"></span>
+                                </li>
+                                <li class="security-item">
+                                    Email:&nbsp;<span id="security-item__email"></span>
+                                </li>
+                                <li class="security-item" id="password-information">
+                                Password:&nbsp;<i class="fas fa-edit" id="edit-password"></i><span id="security-item__password"></span>
+                                </li>
+                            </span>
+                            <form id="change-password-form">
+                                <input type="password" class="form-control replace-password" placeholder="Current Password" required/>
+                                <input type="password" class="form-control replace-password" placeholder="New Password" required/>
+                                <input type="password" class="form-control replace-password" placeholder="Confirm New Password" required/>
+                                <button class="btn btn-success" id="submit-password" type="submit">Change Password</button>
+                                <button class="btn btn-danger" id="go-back"><i class="fas fa-arrow-circle-left"></i>Go Back</button>
+                            </form>
+                        </div>
                     </ul>
                 </div>
                 <div id="admin">

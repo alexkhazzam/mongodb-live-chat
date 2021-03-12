@@ -1,6 +1,6 @@
 const registerModel = require('../models/register');
-const registerEmail = require('../email/register');
-const confirmationEmail = require('../email/confirmation');
+const registerEmail = require('../email/chat/register');
+const confirmationEmail = require('../email/chat/confirmation');
 
 module.exports.getRegisterPage = (req, res, next) => {
   res.render('register', {

@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
-const root = require('../util/root');
-const generateString = require('../util/generateString');
+const root = require('../../util/root');
+const generateString = require('../../util/generateString');
 const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });

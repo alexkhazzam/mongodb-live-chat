@@ -3,7 +3,12 @@ const html = document.querySelector('html');
 const navLinks = document.querySelectorAll('.nav-link');
 const modalNav = document.getElementById('main-settings-nav');
 const closeModal = document.getElementById('close-modal');
+const changePasswordForm = document.getElementById('change-password-form');
 const settingsModal = document.getElementById('settings-modal');
+const goBack = document.getElementById('go-back');
+const personalInformation = document.getElementById('personal-information');
+const passwordInformation = document.getElementById('password-information');
+const changePassword = document.getElementById('edit-password');
 
 const preferencesLink = document.getElementById('preferences-link');
 const preferencesContent = document.getElementById('preferences');
@@ -42,6 +47,8 @@ settingsLi.addEventListener('click', () => {
   settingsModal.style.display = 'block';
   preferencesLink.className += ' active-link';
   closeModal.className = 'nav-link';
+  personalInformation.style.display = 'block';
+  changePasswordForm.style.display = 'none';
   securityLink.className = 'nav-link';
   adminLink.className = 'nav-link';
   adminContent.style.display = 'none';
@@ -58,4 +65,14 @@ navLinks.forEach((link) => {
     });
     e.target.className += ' active-link';
   });
+});
+
+changePassword.addEventListener('click', () => {
+  personalInformation.style.display = 'none';
+  changePasswordForm.style.display = 'block';
+});
+
+goBack.addEventListener('click', () => {
+  personalInformation.style.display = 'block';
+  changePasswordForm.style.display = 'none';
 });
