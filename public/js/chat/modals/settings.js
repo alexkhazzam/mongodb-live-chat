@@ -35,13 +35,18 @@ securityLink.addEventListener('click', () => {
 let clicked = false;
 
 closeModal.addEventListener('click', () => {
-  preferencesLink.className += ' active-link';
-  closeModal.className = 'nav-link';
   settingsModal.style.display = 'none';
 });
 
 settingsLi.addEventListener('click', () => {
   settingsModal.style.display = 'block';
+  preferencesLink.className += ' active-link';
+  closeModal.className = 'nav-link';
+  securityLink.className = 'nav-link';
+  adminLink.className = 'nav-link';
+  adminContent.style.display = 'none';
+  securityContent.style.display = 'none';
+  preferencesContent.style.display = 'block';
 });
 
 navLinks.forEach((link) => {

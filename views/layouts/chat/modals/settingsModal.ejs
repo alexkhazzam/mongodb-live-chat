@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/css/chat/modals/settings.css" />
 <script src="/js/chat/modals/settings.js" defer></script>
+<script src="/js/api/chat/modals/settings.js" defer></script>
 <div id="settings-modal">
+    </script>
     <div id="modal-content">
             <ul class="nav nav-tabs" id="main-settings-nav">
                 <li class="nav-item">
@@ -18,10 +20,20 @@
             </ul>
             <div id="active-content">
                 <div id="preferences">
-                    PREFERENCES
+                  
                 </div>
                 <div id="security">
-                    SECURITY
+                    <ul id="security-items">
+                        <li class="security-item">
+                            <span>First Name: </span><span id="security-item__first-name"></span>
+                        </li>
+                        <li class="security-item">
+                            <span>Last Name: </span><span id="security-item__last-name"></span>
+                        </li>
+                        <li class="security-item">
+                            <span>Email: </span><span id="security-item__email"></span>
+                        </li>
+                    </ul>
                 </div>
                 <div id="admin">
                     <form action="/admin-secret" method="POST" >

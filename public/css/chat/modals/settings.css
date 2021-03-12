@@ -6,7 +6,6 @@
   background-position: center;
   height: 1583px;
   top: 0;
-  cursor: pointer;
   width: 100%;
   z-index: 1;
   background-attachment: fixed;
@@ -74,10 +73,16 @@
 
 .active-link {
   border: 1px solid white !important;
+  border-bottom: none !important;
+}
+
+.active-link:hover {
+  border-bottom: none !important;
 }
 
 .nav-link {
   color: white !important;
+  cursor: pointer;
 }
 
 .fas {

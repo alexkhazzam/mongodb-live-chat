@@ -47,4 +47,10 @@ const tweetAPIRoute = require('./routes/chat/tweet');
 app.use(profileRoute);
 app.use(tweetAPIRoute);
 
+// API Routes
+
+const securityRoute = require('./routes/api/chat/security');
+
+app.use(securityRoute);
+
 module.exports = app;

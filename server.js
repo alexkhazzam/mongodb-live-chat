@@ -1,5 +1,7 @@
 const app = require('./app');
 const dotenv = require('dotenv');
+const colors = require('colors');
+
 dotenv.config({ path: 'dotenv.config.env' });
 
 const DEFAULT_PORT = process.env.DEFAULT_PORT || 5000;
