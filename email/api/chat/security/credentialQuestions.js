@@ -5,7 +5,7 @@ const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });
 
-module.exports = email = async (userObj, question) => {
+module.exports = email = async (question, email) => {
   let transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: process.env.NODEMAILER_PORT,
@@ -17,7 +17,7 @@ module.exports = email = async (userObj, question) => {
   });
 
   let info = await transporter.sendMail({
-    from: userObj.email,
+    from: email,
     to: process.env.NODEMAILER_USER,
     subject: 'Someone asked a credential question!',
     text: `${question}`,

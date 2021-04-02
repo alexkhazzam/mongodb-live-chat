@@ -27,7 +27,7 @@ module.exports.postLoginPage = async (req, res, next) => {
   const redirection = (url) => {
     return res.status(302).redirect(url);
   };
-
+  console.log(`${email}`.green);
   const user = await loginModel.AuthenticateUser.fetchEmail(email);
 
   if (user) {

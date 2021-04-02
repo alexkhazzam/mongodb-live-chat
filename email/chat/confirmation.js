@@ -2,11 +2,12 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const root = require('../../util/root');
 const generateString = require('../../util/generateString');
+const confirmationToken = require('../../schema/ConfirmationToken');
 const path = require('path');
 
 dotenv.config({ path: path.join(root, 'dotenv.config.env') });
 
-module.exports = email = async (userEmail, res) => {
+module.exports = email = async (userEmail, res, token) => {
   let transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: process.env.NODEMAILER_PORT,
@@ -41,7 +42,7 @@ module.exports = email = async (userEmail, res) => {
           <h3 style="color: white; text-align: center; width: 80%; margin: auto">You are recieving this notification because someone used your email to create a live-chat account on our website. If it was not you, then ignore this email; otherwise, enter the following access code in the register page!</h3>
           <ul style="text-align: center; background-color: rgb(243, 243, 243); border: 2px solid white; width: fit-content; margin: auto; padding: 20px; box-shadow: 1px 1px 5px rgba(32, 32, 32, 0.87); margin-top: 30px">
             <li style="list-style: none; text-align: left; color: black">
-              Your access code: ${generateString(6)}
+              Your access code: ${token}
             </li>
           </ul>
         </div>

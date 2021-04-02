@@ -1,6 +1,7 @@
 const registerModel = require('../models/register');
 const registerEmail = require('../email/chat/register');
 const confirmationEmail = require('../email/chat/confirmation');
+const generateString = require('../util/generateString');
 
 module.exports.getRegisterPage = (req, res, next) => {
   res.render('register', {
@@ -28,19 +29,32 @@ module.exports.postRegisterPage = async (req, res, next) => {
     const emailInUse = await registerModel.CreateAccount.emailInUse(email);
 
     if (!emailInUse) {
-      confirmationEmail(email, res);
-      return redirection(`idSent=yes&emailVal=${email}`);
+      const token = generateString(6).toString();
+      const stringStored = await registerModel.CreateAccount.storeAccessToken(
+        email,
+        token
+      );
+      console.log(stringStored);
+      if (stringStored) {
+        confirmationEmail(email, res, token);
+        return redirection(`idSent=yes&emailVal=${email}`);
+      } else {
+        res.redirect('/error'); // TODO
+      }
     } else {
       return redirection(`emailInUse=yes&emailVal=${email}`);
     }
   } else if (req.query.idSubmitted) {
-    const idMatches = await registerModel.CreateAccount.doesIdMatch;
+    const idMatches = await registerModel.CreateAccount.doesIdMatch(
+      email,
+      req.body.token.trim()
+    );
 
     if (idMatches) {
       req.session.tentativeSignIn = email;
       return redirection(`informationPresent=yes&emailVal=${email}`);
     } else {
-      return redirection(`invalidId=yes&emailVal=${email}`);
+      return redirection(`idSent=yes&emailVal=${email}`);
     }
   } else if (
     req.session.tentativeSignIn &&

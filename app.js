@@ -9,10 +9,10 @@ const app = Express();
 
 dotenv.config({ path: 'dotenv.config.env' });
 
-app.use('/', (req, res, next) => {
-  console.log(`HTTP ${req.httpVersion} ${req.method} ${req.originalUrl}`.green);
-  next();
-});
+// app.use('/', (req, res, next) => {
+//   console.log(`HTTP ${req.httpVersion} ${req.method} ${req.originalUrl}`.green);
+//   next();
+// });
 
 app.use(
   session({
