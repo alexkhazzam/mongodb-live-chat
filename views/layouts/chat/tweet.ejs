@@ -12,6 +12,7 @@
                     <div id="error-message">Oops! Your tweet was unable to be posted. Try again soon.</div>
                 <% } %>
             </form>
+            <script src="/js/chat/tweet.js" defer></script>
     </div>
     <div id="tweets">
         <h6 id="total-tweets">Total tweets: <b><%= tweets.length %></b></h6>
@@ -44,12 +45,7 @@
                                      </button>
                                    </li>
                                    <li class="tweet-btn-wrapper">
-                                       <button>
-                                       <i class="fas fa-retweet"></i>
-                                       </button>
-                                   </li>
-                                   <li class="tweet-btn-wrapper">
-                                       <button>
+                                       <button onclick="tweetLiked()">
                                            <i class="far fa-heart"></i>
                                        </button>
                                    </li>

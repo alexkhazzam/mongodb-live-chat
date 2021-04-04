@@ -54,6 +54,12 @@ app.use(tweetAPIRoute);
 
 // API Routes
 
+// Tweet
+
+const likeRoute = require('./routes/api/chat/tweet/like');
+
+app.use(likeRoute);
+
 // Security
 
 const securityRoute = require('./routes/api/chat/security/userCredentials');

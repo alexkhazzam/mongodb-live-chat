@@ -1,6 +1,5 @@
 const UserSchema = require('../schema/User');
 const ConfirmationTokenSchema = require('../schema/ConfirmationToken');
-const generateString = require('../util/generateString');
 const bcrypt = require('bcrypt');
 
 module.exports.CreateAccount = class {
@@ -15,8 +14,8 @@ module.exports.CreateAccount = class {
 
   static async doesIdMatch(email, token) {
     return await ConfirmationTokenSchema.findOne({
-      email: email,
       token: token,
+      email: email,
     }).catch((err) => {
       console.log(`${err}`.red);
       return res.redirect('/error'); // TODO
@@ -28,9 +27,20 @@ module.exports.CreateAccount = class {
       token: token,
       email: email,
     };
-    return await ConfirmationTokenSchema.create(payload).catch((err) => {
-      console.log(`${err}`.red);
+
+    const emailInUse = await ConfirmationTokenSchema.findOne({
+      email: email,
+    }).catch((err) => {
+      console.log(`${err}`); // TODO
     });
+
+    if (emailInUse) {
+      return await ConfirmationTokenSchema.create(payload).catch((err) => {
+        console.log(`${err}`.red); // TODO
+      });
+    } else {
+      res.redirect('/'); // TODO email already storing token
+    }
   }
 
   static async createNewUser(user, res) {

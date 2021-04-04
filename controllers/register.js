@@ -34,7 +34,7 @@ module.exports.postRegisterPage = async (req, res, next) => {
         email,
         token
       );
-      console.log(stringStored);
+
       if (stringStored) {
         confirmationEmail(email, res, token);
         return redirection(`idSent=yes&emailVal=${email}`);
@@ -51,9 +51,11 @@ module.exports.postRegisterPage = async (req, res, next) => {
     );
 
     if (idMatches) {
+      console.log('matches');
       req.session.tentativeSignIn = email;
       return redirection(`informationPresent=yes&emailVal=${email}`);
     } else {
+      console.log('does not match');
       return redirection(`idSent=yes&emailVal=${email}`);
     }
   } else if (
